@@ -1,27 +1,29 @@
 require('babel-polyfill');
 const Bootstrap = require('../bootstrap');
 const React = require('react');
-const TodoAdder = require('./todo_adder');
-const TodoList = require('./todo_list');
+const Square = require('./square');
 const types = React.PropTypes;
 const useStore = require('./use_store');
 
 class Application extends React.Component {
   static propTypes = {
-    store: types.object.isRequired
+    store: types.object
   };
 
   constructor(props, context) {
     super(props, context);
-  }
+  };
+
+
 
   render() {
-    const {todoItems} = this.props.store;
+    const squares = []
+     for (let i of Array(500).keys()) {
+      squares.push((<Square/>))
+    }
     return (
       <div className="pui-react-starter">
-        <header>Things to do</header>
-        <TodoAdder />
-        <TodoList todoItems={todoItems}/>
+        {squares}
       </div>
     );
   }
